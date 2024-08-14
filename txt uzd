@@ -1,0 +1,48 @@
+Užduotis: Lizingo Paraiškos Sistema
+
+Tikslas: Sukurti pilną lizingo paraiškų valdymo sistemą, apimančią duomenų bazę, backend servisus, frontend sąsają ir CI/CD integraciją.
+
+Užduoties Aprašymas
+
+	1.	Duomenų Bazė (MSSQL):
+	•	Sukurti MSSQL duomenų bazę su šiomis lentelėmis:
+	•	Applications (paraiškos): ApplicationId, CustomerId, Amount, Status, CreatedDate.
+	•	Customers (klientai): CustomerId, Name, Email, PhoneNumber.
+	•	CreditAssessments (kredito vertinimai): AssessmentId, ApplicationId, CreditScore, Decision, AssessmentDate.
+	2.	Backend Servisas (ASP.NET Core):
+	•	Sukurti .NET Core API serviso projektą.
+	•	Servisas turi turėti CRUD operacijas paraiškoms valdyti.
+	•	Sukurti atskirą servisą kredito vertinimui. Šis servisas turi priimti paraiškos duomenis, atlikti kredito vertinimą ir grąžinti sprendimą (pvz., “Patvirtinta” arba “Atmesta”).
+	3.	Frontend (React):
+	•	Sukurti React aplikaciją su šiais funkcionalumais:
+	•	Paraiškos formos užpildymas ir pateikimas.
+	•	Sukurtų paraiškų sąrašo rodymas su galimybe peržiūrėti detales.
+	•	Paraiškos būsenos rodymas (pvz., laukia, patvirtinta, atmesta).
+	•	Integruoti su backend servisu per REST API.
+	4.	Duomenų Sinchronizacija:
+	•	Užtikrinti duomenų sinchronizaciją tarp backend servisų naudojant pranešimų eiles arba kitą pasirinktiną metodą.
+	5.	CI/CD Integracija (Azure Pipelines):
+	•	Sukonfigūruoti Azure Pipelines automatizuotiems build ir deploy procesams.
+	•	Build pipeline turi įtraukti unit testus ir kodo analizę.
+	•	Deploy pipeline turi diegti aplikaciją į Azure aplinką.
+
+Reikalavimai
+
+	•	Duomenų Bazė: MSSQL, Entity Framework Core
+	•	Backend: ASP.NET Core
+	•	Frontend: React, Axios (ar kitas HTTP klientas)
+	•	CI/CD: Azure Pipelines
+
+Papildoma Informacija
+
+	•	Kredito vertinimo logika gali būti paprasta, pvz., naudoti atsitiktinį skaičių kaip kredito balą ir nustatyti sprendimą pagal tam tikrą ribą.
+	•	Naudokite atskiras Git šakas funkcionalumams vystyti ir atlikite pull requests su kodo peržiūra.
+	•	Dokumentuokite kiekvieną projekto dalį ir pateikite diegimo instrukcijas.
+
+Vertinimo Kriterijai
+
+	•	Kodo kokybė ir struktūra.
+	•	Projekto dokumentacija.
+	•	CI/CD integracijos veikimas.
+	•	Aplikacijos funkcionalumas ir stabilumas.
+	•	Duomenų sinchronizacijos mechanizmo efektyvumas.
