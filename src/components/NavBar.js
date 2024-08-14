@@ -6,14 +6,14 @@ export function NavBar() {
     return(
         <>
           <Container fluid>
-            <Navbar.Brand href="#home">Badinga</Navbar.Brand>
+            <Navbar.Brand href="/">Badinga</Navbar.Brand>
             <Navbar.Toggle aria-controls="responsive-navbar-nav" />
             <Navbar.Collapse id="responsive-navbar-nav">
 
             
             <Nav className="me-auto">
-              <Nav.Link href="#home">Pildyti</Nav.Link>
-              <Nav.Link href="#features">Paraiškos</Nav.Link>
+              <Nav.Link href="pildyti">Pildyti</Nav.Link>
+              <Nav.Link href="paraiskos">Paraiškos</Nav.Link>
             </Nav>
 
             </Navbar.Collapse>
