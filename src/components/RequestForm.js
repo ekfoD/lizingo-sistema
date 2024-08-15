@@ -1,10 +1,23 @@
+import { RangeWithNumInput } from "./RangeWithNumInput";
+
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import { Container, Row, Col } from "react-bootstrap";
 
 import "../styles/ContainerSize.css";
+import { useState } from "react";
 
 export function RequestForm() {
+  const minPriceSliderValue = 7000;
+  const maxPriceSliderValue = 169000;
+  const [priceSliderValue, setPriceSliderValue] = useState(minPriceSliderValue);
+  const [priceInputValue, setPriceInputValue] = useState(minPriceSliderValue);
+
+  const minMonthSliderValue = 6;
+  const maxMonthSliderValue = 96;
+  const [monthSliderValue, setMonthSliderValue] = useState(minMonthSliderValue);
+  const [monthInputValue, setMonthInputValue] = useState(minMonthSliderValue);
+
   return (
     <div>
       <Container className="Container-sizing">
@@ -20,14 +33,30 @@ export function RequestForm() {
             <Col md={6}>
               <Form.Group>
                 <Form.Label>Mašinos kaina</Form.Label>
-                <Form.Control type="number" placeholder="0" />
+                <RangeWithNumInput
+                  inputValue={priceInputValue}
+                  setInputValue={setPriceInputValue}
+                  rangeValue={priceSliderValue}
+                  setRangeValue={setPriceSliderValue}
+                  rangeMinValue={minPriceSliderValue}
+                  rangeMaxValue={maxPriceSliderValue}
+                  rangeStep={100}
+                />
                 <Form.Text>nuo 7000 Eur. iki 169000 Eur.</Form.Text>
               </Form.Group>
             </Col>
             <Col md={6}>
               <Form.Group>
                 <Form.Label>Laikotarpis</Form.Label>
-                <Form.Control type="number" placeholder="0" />
+                <RangeWithNumInput
+                  inputValue={monthInputValue}
+                  setInputValue={setMonthInputValue}
+                  rangeValue={monthSliderValue}
+                  setRangeValue={setMonthSliderValue}
+                  rangeMinValue={minMonthSliderValue}
+                  rangeMaxValue={maxMonthSliderValue}
+                  rangeStep={1}
+                />
                 <Form.Text>nuo 6 mėn. iki 96 mėn.</Form.Text>
               </Form.Group>
             </Col>
