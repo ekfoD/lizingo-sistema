@@ -2,7 +2,7 @@ import  '../styles/App.css';
 
 import { About } from './About';
 import { NavBar } from './NavBar';
-import { Form } from './Form';
+import { RequestForm } from './RequestForm';
 
 
 import Navbar from 'react-bootstrap/Navbar';
@@ -20,9 +20,9 @@ function App() {
         </div>
 
       <body>
-        <div class="mt-4">
+        <div class="container mt-5">
           <Routes>                                       {/* cia anksciau buvo Switch */}           
-            <Route path='/pildyti' element={<Form />}/>  { /* kai reikes calls i API or smth galima bus patuninti. see here  https://reactrouter.com/en/main/route/route */}
+            <Route path='/pildyti' element={<RequestForm />}/>  { /* kai reikes calls i API or smth galima bus patuninti. see here  https://reactrouter.com/en/main/route/route */}
             <Route path='/paraiskos' element={<RequestList />}/> 
             <Route path='/' element={<About />} />            
           </Routes>

@@ -1,8 +1,8 @@
 export function About() {
     return(
-        <div>
-            <p class="display-4">welcome!</p>
-            <p class="text">we provide car lizingas</p>
+        <div class="text-center">
+            <p class="display-4">Sveiki atvykę!</p>
+            <p class="text">Lizingas mašinoms - taip!</p>
         </div>
     );
 }
