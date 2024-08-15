@@ -1,14 +1,12 @@
-.App {
+Body {
+  background-color: #d1e9fa;
   text-align: center;
+  min-height: 100vh;
+  width: 100%;
+  margin: 0;
+  padding: 0;
 }
 
-/* .App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
-} */
+.NavBar {
+  background-color: #BDE0FE;
+}

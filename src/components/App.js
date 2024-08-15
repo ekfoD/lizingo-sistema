@@ -13,21 +13,22 @@ function App() {
 
   return (
     <>
-      <div className="App">
-        <Navbar collapseOnSelect expand="sm" bg="light" data-bs-theme="light">
-          <NavBar />
-        </Navbar>
+        <div className="NavBar">
+          <Navbar collapseOnSelect expand="sm" data-bs-theme="light">
+            <NavBar />
+          </Navbar>
+        </div>
 
-        <body>
+      <body>
+        <div class="mt-4">
           <Routes>                                       {/* cia anksciau buvo Switch */}           
-            <Route path='/pildyti'  element={<Form />}/>  { /* kai reikes calls i API or smth galima bus patuninti. see here  https://reactrouter.com/en/main/route/route */}
+            <Route path='/pildyti' element={<Form />}/>  { /* kai reikes calls i API or smth galima bus patuninti. see here  https://reactrouter.com/en/main/route/route */}
             <Route path='/paraiskos' element={<RequestList />}/> 
             <Route path='/' element={<About />} />            
           </Routes>
-        </body>
-      </div>
+        </div>
+      </body>    
     </>
-    
   );
 }
 
