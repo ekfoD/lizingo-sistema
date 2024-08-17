@@ -18,6 +18,19 @@ export function RequestForm() {
   const [monthSliderValue, setMonthSliderValue] = useState(minMonthSliderValue);
   const [monthInputValue, setMonthInputValue] = useState(minMonthSliderValue);
 
+  const [contribution, setContribution] = useState(0);
+
+  const [monthlyPayment, setMonthlyPayment] = useState(0);
+  const calculateMonthlyPayment = () => {
+    // to-do. fix this shit grr
+    setMonthlyPayment(priceSliderValue / monthSliderValue);
+    console.log(`${priceSliderValue} ${monthSliderValue}`);
+  };
+
+  const handleMoneyInputField = () => {
+    calculateMonthlyPayment();
+  };
+
   return (
     <div>
       <Container className="Container-sizing">
@@ -40,6 +53,7 @@ export function RequestForm() {
                   setRangeValue={setPriceSliderValue}
                   rangeMinValue={minPriceSliderValue}
                   rangeMaxValue={maxPriceSliderValue}
+                  setOtherThings={handleMoneyInputField}
                   rangeStep={100}
                 />
                 <Form.Text>nuo 7000 Eur. iki 169000 Eur.</Form.Text>
@@ -55,6 +69,7 @@ export function RequestForm() {
                   setRangeValue={setMonthSliderValue}
                   rangeMinValue={minMonthSliderValue}
                   rangeMaxValue={maxMonthSliderValue}
+                  setOtherThings={calculateMonthlyPayment}
                   rangeStep={1}
                 />
                 <Form.Text>nuo 6 mėn. iki 96 mėn.</Form.Text>
@@ -79,8 +94,22 @@ export function RequestForm() {
           </Row>
 
           <Row>
-            <Col md="auto">
-              <Button>Pateikti</Button>
+            <Col className="d-flex justify-content-center">
+              <Form.Group>
+                <Form.Label>Preliminari mėnesio įmoka</Form.Label>
+                <Form.Control
+                  type="number"
+                  placeholder={monthlyPayment}
+                  disabled
+                  readOnly
+                />
+              </Form.Group>
+            </Col>
+
+            <Col className="d-flex justify-content-center align-items-end">
+              <Button size="md" variant="primary" type="submit">
+                Pateikti
+              </Button>
             </Col>
           </Row>
         </Form>
@@ -88,3 +117,33 @@ export function RequestForm() {
     </div>
   );
 }
+
+/*
+
+API => sendForm, getForms
+
+*del saugumo
+
+how to call api from react? how to consume REST api
+
+api => atskiras proj
+
+(input i json => siunti i API => API i klase susimodelina tuos duomenis. ta modeli kontroleris priima. kontrolerlis siuncia i modeli
+paskaiciuoja. i database nusiuncia. atgal i frontenda grazina http status koda (salia grazina ir info))
+
+gauni is api. cacheinti gauta info ir is to cache uzloadinti ja veliau. resursu sutaupai
+
+
+
+pabaigti frontend => api info => api
+
+pradziai mockAPI. patestuoti del sujungimo
+
+
+
+swagger dokumentacija APIui
+
+
+
+
+*/

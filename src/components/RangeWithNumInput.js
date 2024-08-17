@@ -7,15 +7,25 @@ export function RangeWithNumInput({
   setRangeValue,
   rangeMinValue,
   rangeMaxValue,
+  setOtherThings,
   rangeStep,
 }) {
+  const handleBlur = () => {
+    if (inputValue < rangeMinValue) setInputValue(rangeMinValue);
+    else if (inputValue > rangeMaxValue) setInputValue(rangeMaxValue);
+  };
   return (
     <>
       <Form.Control
         type="number"
         value={inputValue}
+        min={rangeMinValue}
+        max={rangeMaxValue}
         onChange={(e) => setInputValue(e.target.value)}
-        onBlur={(e) => setRangeValue(e.target.value)}
+        onBlur={(e) => {
+          handleBlur();
+          setRangeValue(e.target.value);
+        }}
       />
       <Form.Range
         min={rangeMinValue}
@@ -26,6 +36,7 @@ export function RangeWithNumInput({
         onChange={(e) => {
           setInputValue(e.target.value);
           setRangeValue(e.target.value);
+          setOtherThings();
         }}
       />
     </>
