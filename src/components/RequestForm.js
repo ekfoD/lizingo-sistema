@@ -1,4 +1,5 @@
 import { RangeWithNumInput } from "./RangeWithNumInput";
+import { RequestForm2ndRow } from "./RequestForm2ndRow";
 
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
@@ -19,16 +20,42 @@ export function RequestForm() {
   const [monthInputValue, setMonthInputValue] = useState(minMonthSliderValue);
 
   const [contribution, setContribution] = useState(0);
-
+  const [contributionPercent, setContributionPercent] = useState(0);
   const [monthlyPayment, setMonthlyPayment] = useState(0);
+
   const calculateMonthlyPayment = () => {
     // to-do. fix this shit grr
     setMonthlyPayment(priceSliderValue / monthSliderValue);
     console.log(`${priceSliderValue} ${monthSliderValue}`);
   };
 
-  const handleMoneyInputField = () => {
-    calculateMonthlyPayment();
+  const handleMoneyInputField = (value) => {
+    calculateMonthlyPayment(); // cia problema nes ten persiuncia vienu senesni value. ir del to preliminari menesio imoka yra netiksli
+    // o tie kiti tikslus (praidinis inasas n pradinis inasaas %)
+    setContributionPercent((100 * contribution) / value);
+    handleContributionField(contribution, value);
+  };
+
+  const handleContributionField = (contributionVal, priceInputVal) => {
+    if (contributionVal * 10 < priceInputVal) {
+      setContribution(priceInputVal * 0.1);
+      setContributionPercent(10);
+    } else if (contributionVal > priceInputVal * 0.9) {
+      setContribution(priceInputVal * 0.9);
+      setContributionPercent(90);
+    }
+  };
+
+  const handleContributionInputChanges = (val) => {
+    setContribution(val);
+    setContributionPercent(priceInputValue / val);
+    handleContributionField(val, priceInputValue);
+  };
+
+  const handleContributionPercentChanges = (val) => {
+    setContribution((priceInputValue * val) / 100);
+    setContributionPercent(val);
+    handleContributionField(contribution, priceInputValue);
   };
 
   return (
@@ -78,19 +105,16 @@ export function RequestForm() {
           </Row>
 
           <Row className="mb-5">
-            <Col md={6}>
-              <Form.Group>
-                <Form.Label>Pradinis įnašas</Form.Label>
-                <Form.Control type="number" placeholder="0" />
-                <Form.Text>10% automobilio sumos</Form.Text>
-              </Form.Group>
-            </Col>
-            <Col md={6}>
-              <Form.Group>
-                <Form.Label>Pradinis įnašas %</Form.Label>
-                <Form.Control type="number" placeholder="0" />
-              </Form.Group>
-            </Col>
+            <RequestForm2ndRow
+              contribution={contribution}
+              contributionPercent={contributionPercent}
+              setContribution={setContribution}
+              setContributionPercent={setContributionPercent}
+              handleContributionInputChanges={handleContributionInputChanges}
+              handleContributionPercentChanges={
+                handleContributionPercentChanges
+              }
+            />
           </Row>
 
           <Row>
