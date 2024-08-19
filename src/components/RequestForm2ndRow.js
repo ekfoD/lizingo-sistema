@@ -4,7 +4,7 @@ export function RequestForm2ndRow({
   contribution,
   contributionPercent,
   setContribution,
-  setContributionPercentage,
+  setContributionPercent,
   handleContributionInputChanges,
   handleContributionPercentChanges,
 }) {
@@ -17,7 +17,7 @@ export function RequestForm2ndRow({
             type="number"
             placeholder="0"
             value={contribution}
-            onChange={setContribution}
+            onChange={(e) => setContribution(e.target.value)}
             onBlur={(e) => handleContributionInputChanges(e.target.value)}
           />
           <Form.Text>10% automobilio sumos</Form.Text>
@@ -30,7 +30,7 @@ export function RequestForm2ndRow({
             type="number"
             placeholder="0"
             value={contributionPercent}
-            onChange={setContributionPercentage}
+            onChange={(e) => setContributionPercent(e.target.value)}
             onBlur={(e) => handleContributionPercentChanges(e.target.value)}
           />
         </Form.Group>

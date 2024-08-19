@@ -26,7 +26,6 @@ export function RequestForm() {
   const calculateMonthlyPayment = () => {
     // to-do. fix this shit grr
     setMonthlyPayment(priceSliderValue / monthSliderValue);
-    console.log(`${priceSliderValue} ${monthSliderValue}`);
   };
 
   const handleMoneyInputField = (value) => {
@@ -48,11 +47,20 @@ export function RequestForm() {
 
   const handleContributionInputChanges = (val) => {
     setContribution(val);
-    setContributionPercent(priceInputValue / val);
+    setContributionPercent((100 * val) / priceInputValue);
     handleContributionField(val, priceInputValue);
   };
 
   const handleContributionPercentChanges = (val) => {
+    if (val < 10) {
+      setContribution(priceInputValue * 0.1);
+      setContributionPercent(10);
+      return;
+    } else if (val > 90) {
+      setContribution(priceInputValue * 0.9);
+      setContributionPercent(90);
+      return;
+    }
     setContribution((priceInputValue * val) / 100);
     setContributionPercent(val);
     handleContributionField(contribution, priceInputValue);
