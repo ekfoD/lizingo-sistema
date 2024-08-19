@@ -1,8 +1,12 @@
 import { Container, Row, Col, Button } from "react-bootstrap";
+import { InspectReq } from "./InspectReq";
+import { useState } from "react";
 
 export function Request({ moneyAmount, duration, contribution }) {
+  const [show, setShow] = useState(false);
   return (
     <Container>
+      {show ? <InspectReq setShow={setShow} /> : null}
       <Row>
         <Col>
           <p>vardas</p>
@@ -14,7 +18,9 @@ export function Request({ moneyAmount, duration, contribution }) {
           <Button className="btn-danger">Atšaukti</Button>
         </Col>
         <Col>
-          <Button className="btn-success">Peržiūrėti</Button>
+          <Button className="btn-success" onClick={() => setShow(true)}>
+            Peržiūrėti
+          </Button>
         </Col>
       </Row>
     </Container>
