@@ -46,3 +46,16 @@ Vertinimo Kriterijai
 	•	CI/CD integracijos veikimas.
 	•	Aplikacijos funkcionalumas ir stabilumas.
 	•	Duomenų sinchronizacijos mechanizmo efektyvumas.
+
+
+
+
+
+
+
+to-do: 
+	RequestForm.js:
+		* kai uzloadina site kad ir pradini inasa su % sutvarkytu
+		* sutvarkyti preliminaria menesio imoka
+		* kad butu grazus skaiciai
+		* kai pakeiti pradini inasa turi pasikeisti ir preliminari menesio imoka
