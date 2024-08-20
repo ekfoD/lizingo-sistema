@@ -1,28 +1,43 @@
-import Button from "react-bootstrap/Button";
+import { Col, Container, Row } from "react-bootstrap";
 import Modal from "react-bootstrap/Modal";
 
-export function InspectReq({ setShow }) {
+export function InspectReq({
+  setShow,
+  show,
+  moneyAmount,
+  duration,
+  contribution,
+  name,
+}) {
   return (
-    <div
-      className="modal show"
-      style={{ display: "block", position: "initial" }}
-    >
-      <Modal.Dialog>
+    <>
+      <Modal size="lg" show={show} onHide={() => setShow(false)}>
         <Modal.Header closeButton>
-          <Modal.Title>Modal title</Modal.Title>
+          <Modal.Title>Paraiškos duomenys:</Modal.Title>
         </Modal.Header>
-
         <Modal.Body>
-          <p>Modal body text goes here.</p>
-        </Modal.Body>
+          <Container>
+            <Row>
+              <Col>
+                <p>Numeris:</p>
+              </Col>
+              <Col>
+                <p>Suma:</p>
+              </Col>
+            </Row>
 
-        <Modal.Footer>
-          <Button variant="secondary" onClick={() => setShow(false)}>
-            Close
-          </Button>
-          <Button variant="primary">Save changes</Button>
-        </Modal.Footer>
-      </Modal.Dialog>
-    </div>
+            <Row>
+              <Col>
+                <p>Trukmė:</p>
+              </Col>
+
+              <Col>
+                <p>Pradinis įnašas:</p>
+              </Col>
+            </Row>
+          </Container>
+        </Modal.Body>
+      </Modal>
+    </>
   );
 }
