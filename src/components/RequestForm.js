@@ -149,33 +149,3 @@ export function RequestForm() {
     </div>
   );
 }
-
-/*
-
-API => sendForm, getForms
-
-*del saugumo
-
-how to call api from react? how to consume REST api
-
-api => atskiras proj
-
-(input i json => siunti i API => API i klase susimodelina tuos duomenis. ta modeli kontroleris priima. kontrolerlis siuncia i modeli
-paskaiciuoja. i database nusiuncia. atgal i frontenda grazina http status koda (salia grazina ir info))
-
-gauni is api. cacheinti gauta info ir is to cache uzloadinti ja veliau. resursu sutaupai
-
-
-
-pabaigti frontend => api info => api
-
-pradziai mockAPI. patestuoti del sujungimo
-
-
-
-swagger dokumentacija APIui
-
-
-
-
-*/
