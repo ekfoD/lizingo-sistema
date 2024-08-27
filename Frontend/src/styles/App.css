@@ -1,0 +1,12 @@
+Body {
+  background-color: #d1e9fa;
+  /* text-align: center; */
+  min-height: 100vh;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+.NavBar {
+  background-color: #BDE0FE;
+}
