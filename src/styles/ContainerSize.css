@@ -1,5 +1,0 @@
-.Container-sizing {
-    max-width: 800px; /* Adjust the width as needed */
-    width: 100%;      /* Ensure it still scales responsively */
-    margin: 0 auto;   /* Center the container  */
-}
