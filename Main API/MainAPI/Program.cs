@@ -5,6 +5,15 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("AllowReactApp",
+        builder => builder.WithOrigins("http://localhost:5140")
+                          .AllowAnyHeader()
+                          .AllowAnyMethod());
+});
+
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
@@ -23,7 +32,7 @@ var summaries = new[]
 
 app.MapGet("/weatherforecast", () =>
 {
-    var forecast =  Enumerable.Range(1, 5).Select(index =>
+    var forecast = Enumerable.Range(1, 5).Select(index =>
         new WeatherForecast
         (
             DateOnly.FromDateTime(DateTime.Now.AddDays(index)),
