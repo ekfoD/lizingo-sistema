@@ -1,0 +1,6 @@
+@lizingo_sistema_HostAddress = http://localhost:5039
+
+GET {{lizingo_sistema_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
