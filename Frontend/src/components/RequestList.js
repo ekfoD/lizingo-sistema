@@ -4,6 +4,7 @@ import { Container, ListGroup, Row, Col } from "react-bootstrap";
 
 import "../styles/ContainerSize.css";
 import { useEffect, useState } from "react";
+import { toast } from "react-toastify";
 
 export function RequestList() {
   const [requests, setRequests] = useState([]);
@@ -12,14 +13,17 @@ export function RequestList() {
     getRequests();
   }, []);
 
-  // a func to get the shit
   const getRequests = async () => {
-    fetch("http://localhost:5039/getRequests/")
-      .then((response) => response.json())
-      .then((data) => {
-        //        setRequests((prevRequests) => [data, ...prevRequests]);
-        setRequests(data);
-      });
+    try {
+      const response = await fetch("http://localhost:5039/getRequests/");
+
+      if (!response.ok) {
+        throw new Error("Server error");
+      }
+      setRequests(response.json());
+    } catch (error) {
+      toast.error("Could not load the requests!");
+    }
   };
 
   return (
@@ -42,7 +46,6 @@ export function RequestList() {
           {requests.map((request, idx) => {
             return (
               <ListGroup.Item key={idx} variant="primary" className="my-2">
-                <h1>hey</h1>
                 <Request
                   moneyAmount={request.price}
                   duration={request.timeSpan}
