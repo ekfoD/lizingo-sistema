@@ -3,8 +3,25 @@ import { Request } from "./Request";
 import { Container, ListGroup, Row, Col } from "react-bootstrap";
 
 import "../styles/ContainerSize.css";
+import { useEffect, useState } from "react";
 
 export function RequestList() {
+  const [requests, setRequests] = useState([]);
+
+  useEffect(() => {
+    getRequests();
+  }, []);
+
+  // a func to get the shit
+  const getRequests = async () => {
+    fetch("http://localhost:5039/getRequests/")
+      .then((response) => response.json())
+      .then((data) => {
+        //        setRequests((prevRequests) => [data, ...prevRequests]);
+        setRequests(data);
+      });
+  };
+
   return (
     <div>
       <Container className="Container-sizing">
@@ -22,13 +39,18 @@ export function RequestList() {
         </Row>
 
         <ListGroup>
-          <ListGroup.Item variant="primary" className="my-2">
-            {" "}
-            <Request moneyAmount={100} duration={10} contribution={10} />
-          </ListGroup.Item>
-          <ListGroup.Item variant="primary" className="my-2">
-            <Request />
-          </ListGroup.Item>
+          {requests.map((request, idx) => {
+            return (
+              <ListGroup.Item key={idx} variant="primary" className="my-2">
+                <h1>hey</h1>
+                <Request
+                  moneyAmount={request.price}
+                  duration={request.timeSpan}
+                  contribution={request.downPayment}
+                />
+              </ListGroup.Item>
+            );
+          })}
         </ListGroup>
       </Container>
     </div>

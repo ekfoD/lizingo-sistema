@@ -19,20 +19,20 @@ export function InspectReq({
           <Container>
             <Row>
               <Col>
-                <p>Numeris:</p>
+                <p>Numeris: {name}</p>
               </Col>
               <Col>
-                <p>Suma:</p>
+                <p>Suma: {moneyAmount}</p>
               </Col>
             </Row>
 
             <Row>
               <Col>
-                <p>Trukmė:</p>
+                <p>Trukmė: {duration}</p>
               </Col>
 
               <Col>
-                <p>Pradinis įnašas:</p>
+                <p>Pradinis įnašas: {contribution}</p>
               </Col>
             </Row>
           </Container>

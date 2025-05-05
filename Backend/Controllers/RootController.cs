@@ -38,5 +38,11 @@ namespace lizingo_sistema.Controllers
 
             return Ok(request);
         }
+
+        [HttpGet("getRequests/")]
+        public IActionResult GetRequests()
+        {
+            return Ok(_requestService.GetRequests());
+        }
     }
 }
