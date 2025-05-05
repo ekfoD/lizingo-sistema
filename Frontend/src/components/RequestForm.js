@@ -66,6 +66,32 @@ export function RequestForm() {
     handleContributionField(contribution, priceInputValue);
   };
 
+  const addRequest = (price, timeSpan, downPayment) => {
+    fetch("http://localhost:5039/postRequest/", {
+      method: "POST",
+      body: JSON.stringify({
+        price: price,
+        timeSpan: timeSpan,
+        downPayment: downPayment,
+      }),
+      headers: {
+        "Content-type": "application/json; charset=UTF-8",
+      },
+    }).then((response) => {
+      if (response.status === 200) {
+        // show the notif that everyting is goood
+      } else {
+        // error
+      }
+    });
+    //.then((data) => setRequests((prevRequests) => [data, ...prevRequests]));
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    addRequest(priceInputValue, monthSliderValue, contribution);
+  };
+
   return (
     <div>
       <Container className="Container-sizing">
@@ -76,7 +102,7 @@ export function RequestForm() {
           <strong>Paraiškos</strong>{" "}
         </p>
 
-        <Form>
+        <Form onSubmit={handleSubmit}>
           <Row className="mb-4">
             <Col md={6}>
               <Form.Group>
