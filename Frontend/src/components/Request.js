@@ -2,7 +2,13 @@ import { Container, Row, Col, Button } from "react-bootstrap";
 import { InspectReq } from "./InspectReq";
 import { useState } from "react";
 
-export function Request({ moneyAmount, duration, contribution, name }) {
+export function Request({
+  moneyAmount,
+  duration,
+  contribution,
+  name,
+  onDelete,
+}) {
   const [show, setShow] = useState(false);
   return (
     <Container>
@@ -18,13 +24,15 @@ export function Request({ moneyAmount, duration, contribution, name }) {
       ) : null}
       <Row>
         <Col>
-          <p>vardas</p>
+          <p>{name}</p>
         </Col>
         <Col className="d-flex align-content-center justify-content-end">
           <p>status</p>
         </Col>
         <Col className="d-flex align-content-end justify-content-end">
-          <Button className="btn-danger">Atšaukti</Button>
+          <Button className="btn-danger" onClick={onDelete}>
+            Atšaukti
+          </Button>
         </Col>
         <Col>
           <Button className="btn-success" onClick={() => setShow(true)}>

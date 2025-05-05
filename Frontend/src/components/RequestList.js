@@ -20,9 +20,26 @@ export function RequestList() {
       if (!response.ok) {
         throw new Error("Server error");
       }
-      setRequests(response.json());
+      const data = await response.json();
+      setRequests(data);
     } catch (error) {
       toast.error("Could not load the requests!");
+    }
+  };
+
+  const deleteRequest = async (id) => {
+    const response = await fetch(`http://localhost:5039/deleteRequest/${id}`, {
+      method: "DELETE",
+    });
+
+    if (response.ok) {
+      console.log(response);
+      toast.success("successfully deleted!");
+      setRequests((prevRequests) =>
+        prevRequests.filter((r) => r.requestId !== id)
+      );
+    } else {
+      toast.error("deletion was unsuccessful.");
     }
   };
 
@@ -43,13 +60,19 @@ export function RequestList() {
         </Row>
 
         <ListGroup>
-          {requests.map((request, idx) => {
+          {requests.map((request) => {
             return (
-              <ListGroup.Item key={idx} variant="primary" className="my-2">
+              <ListGroup.Item
+                key={request.requestId}
+                variant="primary"
+                className="my-2"
+              >
                 <Request
                   moneyAmount={request.price}
                   duration={request.timeSpan}
                   contribution={request.downPayment}
+                  name={request.requestId}
+                  onDelete={() => deleteRequest(request.requestId)}
                 />
               </ListGroup.Item>
             );

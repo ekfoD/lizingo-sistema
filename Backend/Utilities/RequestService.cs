@@ -15,6 +15,13 @@ public class RequestService
         idGenerator = 0;
     }
 
+    public bool RemoveRequest(int id)
+    {
+        // requests = requests.Where(x => x.RequestId != id).ToList(); one way to do it
+
+        int removedCount = requests.RemoveAll(x => x.RequestId == id);
+        return removedCount > 0;
+    }
 
     public void AddRequest(RequestDto request)
     {

@@ -15,12 +15,6 @@ namespace lizingo_sistema.Controllers
             _requestService = requestService;
         }
 
-        [HttpGet("green/")]
-        public IActionResult GetTestInfo()
-        {
-            return Ok(69);
-        }
-
         [HttpPost("postRequest/")]
         public IActionResult PostRequest([FromBody] RequestDto request)
         {
@@ -30,12 +24,6 @@ namespace lizingo_sistema.Controllers
             _requestService.AddRequest(request);
 
             // returning answer to the client
-            foreach (var item in _requestService.GetRequests())
-            {
-                Console.WriteLine($"{item.Price}, {item.TimeSpan}, {item.DownPayment}");
-            }
-            Console.WriteLine();
-
             return Ok(request);
         }
 
@@ -43,6 +31,15 @@ namespace lizingo_sistema.Controllers
         public IActionResult GetRequests()
         {
             return Ok(_requestService.GetRequests());
+        }
+
+        [HttpDelete("deleteRequest/{id}")]
+        public IActionResult DeleteRequest(int id)
+        {
+            if (_requestService.RemoveRequest(id))
+                return Ok();
+            else
+                return NotFound();
         }
     }
 }
