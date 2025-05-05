@@ -1,4 +1,7 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using lizingo_sistema.Dtos;
+using lizingo_sistema.Models;
+using lizingo_sistema.Utilities;
+using Microsoft.AspNetCore.Mvc;
 
 namespace lizingo_sistema.Controllers
 {
@@ -6,10 +9,34 @@ namespace lizingo_sistema.Controllers
     [Route("/")]
     public class RootController : ControllerBase
     {
-        [HttpGet("green/")]
-        public int GetTestInfo()
+        private RequestService _requestService;
+        public RootController(RequestService requestService)
         {
-            return 69;
+            _requestService = requestService;
+        }
+
+        [HttpGet("green/")]
+        public IActionResult GetTestInfo()
+        {
+            return Ok(69);
+        }
+
+        [HttpPost("postRequest/")]
+        public IActionResult PostRequest([FromBody] RequestDto request)
+        {
+            // some checking
+
+            // adding the request
+            _requestService.AddRequest(request);
+
+            // returning answer to the client
+            foreach (var item in _requestService.GetRequests())
+            {
+                Console.WriteLine($"{item.Price}, {item.TimeSpan}, {item.DownPayment}");
+            }
+            Console.WriteLine();
+
+            return Ok(request);
         }
     }
 }
