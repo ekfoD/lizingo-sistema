@@ -5,6 +5,8 @@ import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import { Container, Row, Col } from "react-bootstrap";
 
+import { toast } from "react-toastify";
+
 import "../styles/ContainerSize.css";
 import { useState } from "react";
 
@@ -66,25 +68,25 @@ export function RequestForm() {
     handleContributionField(contribution, priceInputValue);
   };
 
-  const addRequest = (price, timeSpan, downPayment) => {
-    fetch("http://localhost:5039/postRequest/", {
-      method: "POST",
-      body: JSON.stringify({
-        price: price,
-        timeSpan: timeSpan,
-        downPayment: downPayment,
-      }),
-      headers: {
-        "Content-type": "application/json; charset=UTF-8",
-      },
-    }).then((response) => {
-      if (response.status === 200) {
-        // show the notif that everyting is goood
-      } else {
-        // error
-      }
-    });
-    //.then((data) => setRequests((prevRequests) => [data, ...prevRequests]));
+  const addRequest = async (price, timeSpan, downPayment) => {
+    try {
+      const response = await fetch("http://localhost:5039/postRequest/", {
+        method: "POST",
+        body: JSON.stringify({
+          price: price,
+          timeSpan: timeSpan,
+          downPayment: downPayment,
+        }),
+        headers: {
+          "Content-type": "application/json; charset=UTF-8",
+        },
+      });
+
+      if (!response.ok) throw new Error("Server error");
+      toast.success("Request submitted");
+    } catch (error) {
+      toast.error("something bad");
+    }
   };
 
   const handleSubmit = (e) => {
