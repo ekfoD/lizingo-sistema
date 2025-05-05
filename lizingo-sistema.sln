@@ -3,9 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.5.002.0
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Main API", "Main API", "{6AD9DE05-F3AA-4C59-A02E-B565DBB7B22F}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Frontend", "Frontend", "{11111111-1111-1111-1111-111111111111}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MainAPI", "Main API\MainAPI\MainAPI.csproj", "{B8B2FC63-E22B-41A3-9A18-789C225319DF}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Backend", "Backend\lizingo-sistema.csproj", "{B8B2FC63-E22B-41A3-9A18-789C225319DF}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
