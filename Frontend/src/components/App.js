@@ -5,6 +5,8 @@ import { NavBar } from "./NavBar";
 import { RequestForm } from "./RequestForm";
 import { MockComp } from "./MockComp";
 
+import { ToastContainer } from "react-toastify";
+
 import Navbar from "react-bootstrap/Navbar";
 import { Route, Routes } from "react-router-dom";
 import { RequestList } from "./RequestList";
@@ -29,6 +31,8 @@ function App() {
             <Route path="/" element={<About />} />
             <Route path="/mock" element={<MockComp />} />
           </Routes>
+
+          <ToastContainer position="top-right" autoClose={3000} />
         </div>
       </body>
     </>
