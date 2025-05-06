@@ -3,7 +3,6 @@ import "../styles/App.css";
 import { About } from "./About";
 import { NavBar } from "./NavBar";
 import { RequestForm } from "./RequestForm";
-import { MockComp } from "./MockComp";
 
 import { ToastContainer } from "react-toastify";
 
@@ -29,7 +28,6 @@ function App() {
             {/* kai reikes calls i API or smth galima bus patuninti. see here  https://reactrouter.com/en/main/route/route */}
             <Route path="/paraiskos" element={<RequestList />} />
             <Route path="/" element={<About />} />
-            <Route path="/mock" element={<MockComp />} />
           </Routes>
 
           <ToastContainer position="top-right" autoClose={3000} />

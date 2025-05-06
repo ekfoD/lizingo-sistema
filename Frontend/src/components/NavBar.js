@@ -12,7 +12,6 @@ export function NavBar() {
           <Nav className="me-auto">
             <Nav.Link href="pildyti">Pildyti</Nav.Link>
             <Nav.Link href="paraiskos">Paraiškos</Nav.Link>
-            <Nav.Link href="mock">API testavimai</Nav.Link>
           </Nav>
         </Navbar.Collapse>
       </Container>
