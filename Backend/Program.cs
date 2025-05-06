@@ -22,7 +22,7 @@ builder.Services.AddSwaggerGen();
 builder.Services.AddControllers(); // Enable MVC Controllers
 
 builder.Services.AddSingleton<RequestService>(); // for testing now
-
+builder.Services.AddTransient<ValidationService>();
 
 var app = builder.Build();
 

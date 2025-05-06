@@ -1,4 +1,5 @@
 using System.Runtime.Serialization;
+using System.Threading.Tasks;
 using lizingo_sistema.Dtos;
 using lizingo_sistema.Models;
 
@@ -8,11 +9,13 @@ public class RequestService
 {
     private List<Request> requests;
     private int idGenerator;
+    private ValidationService _validationService;
 
-    public RequestService()
+    public RequestService(ValidationService validationService)
     {
         requests = []; // == requests = new List<Request>(); :OO
         idGenerator = 0;
+        _validationService = validationService;
     }
 
     public bool RemoveRequest(int id)
@@ -23,9 +26,19 @@ public class RequestService
         return removedCount > 0;
     }
 
-    public void AddRequest(RequestDto request)
+    public Task AddRequest(RequestDto request)
     {
-        requests.Add(new Request(idGenerator++, request.Price, request.TimeSpan, request.DownPayment));
+        int ind = idGenerator++;
+        Request req = new Request(ind, request.Price, request.TimeSpan, request.DownPayment);
+
+        requests.Add(req);
+
+        // handle the validation
+        // Fire-and-forget background validation
+        _ = Task.Run(() => _validationService.ValidateRequest(req));
+
+        // update the req in list
+        return Task.CompletedTask;
     }
 
     public List<Request> GetRequests() => requests;
