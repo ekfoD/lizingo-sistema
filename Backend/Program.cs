@@ -1,3 +1,4 @@
+using System.Text.Json.Serialization;
 using lizingo_sistema.Utilities;
 
 var builder = WebApplication.CreateBuilder(args);

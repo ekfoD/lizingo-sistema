@@ -73,6 +73,7 @@ export function RequestList() {
                   contribution={request.downPayment}
                   name={request.requestId}
                   onDelete={() => deleteRequest(request.requestId)}
+                  status={request.status}
                 />
               </ListGroup.Item>
             );

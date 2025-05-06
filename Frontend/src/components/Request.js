@@ -8,7 +8,17 @@ export function Request({
   contribution,
   name,
   onDelete,
+  status,
 }) {
+  const statusMessages = {
+    2: "In progress",
+    0: "Approved",
+    1: "Rejected",
+  };
+
+  // Usage
+  const message = statusMessages[status] || "Unknown status";
+
   const [show, setShow] = useState(false);
   return (
     <Container>
@@ -27,7 +37,7 @@ export function Request({
           <p>{name}</p>
         </Col>
         <Col className="d-flex align-content-center justify-content-end">
-          <p>status</p>
+          <p>{message}</p>
         </Col>
         <Col className="d-flex align-content-end justify-content-end">
           <Button className="btn-danger" onClick={onDelete}>
