@@ -11,13 +11,13 @@ export function Request({
   status,
 }) {
   const statusMessages = {
-    2: "In progress",
-    0: "Approved",
-    1: "Rejected",
+    2: "Apdorojama",
+    0: "Priimta",
+    1: "Atmesta",
   };
 
   // Usage
-  const message = statusMessages[status] || "Unknown status";
+  const message = statusMessages[status] || "Nežinoma būsena";
 
   const [show, setShow] = useState(false);
   return (

@@ -23,7 +23,7 @@ export function RequestList() {
       const data = await response.json();
       setRequests(data);
     } catch (error) {
-      toast.error("Could not load the requests!");
+      toast.error("Paraiškos nebuvo užkrautos. Atsiprašome!");
     }
   };
 
@@ -34,12 +34,12 @@ export function RequestList() {
 
     if (response.ok) {
       console.log(response);
-      toast.success("successfully deleted!");
+      toast.success("Sėkmingai atšaukta!");
       setRequests((prevRequests) =>
         prevRequests.filter((r) => r.requestId !== id)
       );
     } else {
-      toast.error("deletion was unsuccessful.");
+      toast.error("Atšaukimas nepavyko");
     }
   };
 

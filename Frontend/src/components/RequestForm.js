@@ -83,9 +83,9 @@ export function RequestForm() {
       });
 
       if (!response.ok) throw new Error("Server error");
-      toast.success("Request submitted");
+      toast.success("Paraiška priimta");
     } catch (error) {
-      toast.error("something bad");
+      toast.error("Kažkas negerai! Paraiška nebuvo priimta");
     }
   };
 
