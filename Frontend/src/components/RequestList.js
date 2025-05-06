@@ -28,17 +28,24 @@ export function RequestList() {
   };
 
   const deleteRequest = async (id) => {
-    const response = await fetch(`http://localhost:5039/deleteRequest/${id}`, {
-      method: "DELETE",
-    });
-
-    if (response.ok) {
-      console.log(response);
-      toast.success("Sėkmingai atšaukta!");
-      setRequests((prevRequests) =>
-        prevRequests.filter((r) => r.requestId !== id)
+    try {
+      const response = await fetch(
+        `http://localhost:5039/deleteRequest/${id}`,
+        {
+          method: "DELETE",
+        }
       );
-    } else {
+
+      if (!response.ok) {
+        throw new Error("Server err");
+      } else {
+        console.log(response);
+        toast.success("Sėkmingai atšaukta!");
+        setRequests((prevRequests) =>
+          prevRequests.filter((r) => r.requestId !== id)
+        );
+      }
+    } catch (error) {
       toast.error("Atšaukimas nepavyko");
     }
   };
