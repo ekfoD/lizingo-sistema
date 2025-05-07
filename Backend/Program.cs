@@ -1,9 +1,10 @@
 using System.Text.Json.Serialization;
+using lizingo_sistema.Data;
 using lizingo_sistema.Utilities;
+using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// https://www.c-sharpcorner.com/article/cross-origin-resource-sharing-cors-in-net-8/
 builder.Services.AddCors(options =>
 {
     options.AddPolicy("AllowAll", policy =>
@@ -14,9 +15,6 @@ builder.Services.AddCors(options =>
     });
 });
 
-
-
-// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddControllers(); // Enable MVC Controllers
@@ -24,9 +22,16 @@ builder.Services.AddControllers(); // Enable MVC Controllers
 builder.Services.AddSingleton<RequestService>(); // for testing now
 builder.Services.AddTransient<ValidationService>();
 
+var connectionString =
+    builder.Configuration.GetConnectionString("DefaultConnection")
+        ?? throw new InvalidOperationException("Connection string"
+        + "'DefaultConnection' not found.");
+
+builder.Services.AddDbContext<AppDbContext>(options =>
+    options.UseSqlServer(connectionString));
+
 var app = builder.Build();
 
-// Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
