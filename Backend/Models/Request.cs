@@ -4,9 +4,8 @@
     {
         public Request() { }
 
-        public Request(int id, int price, int timeSpan, int downPayment)
+        public Request(int price, int timeSpan, int downPayment)
         {
-            RequestId = id;
             Price = price;
             TimeSpan = timeSpan;
             DownPayment = downPayment;

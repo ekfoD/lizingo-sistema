@@ -19,7 +19,7 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddControllers(); // Enable MVC Controllers
 
-builder.Services.AddSingleton<RequestService>(); // for testing now
+builder.Services.AddTransient<RequestService>(); // for testing now
 builder.Services.AddTransient<ValidationService>();
 
 var connectionString =

@@ -16,27 +16,27 @@ namespace lizingo_sistema.Controllers
         }
 
         [HttpPost("postRequest/")]
-        public IActionResult PostRequest([FromBody] RequestDto request)
+        public async Task<IActionResult> PostRequest([FromBody] RequestDto request)
         {
             // some checking
 
             // adding the request
-            _requestService.AddRequest(request);
+            await _requestService.AddRequestAsync(request);
 
             // returning answer to the client
             return Ok(request);
         }
 
         [HttpGet("getRequests/")]
-        public IActionResult GetRequests()
+        public async Task<IActionResult> GetRequests()
         {
-            return Ok(_requestService.GetRequests());
+            return Ok(await _requestService.GetRequestsAsync());
         }
 
         [HttpDelete("deleteRequest/{id}")]
-        public IActionResult DeleteRequest(int id)
+        public async Task<IActionResult> DeleteRequest(int id)
         {
-            if (_requestService.RemoveRequest(id))
+            if (await _requestService.RemoveRequestAsync(id))
                 return Ok();
             else
                 return NotFound();
