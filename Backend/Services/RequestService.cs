@@ -49,7 +49,8 @@ public class RequestService
             var db = scope.ServiceProvider.GetRequiredService<AppDbContext>();
 
             await _validationService.ValidateRequest(req);
-            await _appDbContext.SaveChangesAsync();
+            db.Requests.Update(req);
+            await db.SaveChangesAsync();
         });
     }
 
